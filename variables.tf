@@ -21,11 +21,6 @@ variable "project_name" {
   description = "Name of the project / client / product to be used in naming convention"
 }
 
-variable "aws_account_id" {
-  type        = string
-  description = "AWS account to deploy resources"
-}
-
 ################################################################################
 # Module 
 ################################################################################
@@ -55,7 +50,7 @@ variable "ecr_repository_type" {
 variable "ecr_create_repository" {
   description = "Determines whether a repository will be created"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "ecr_repository_name" {
@@ -147,7 +142,7 @@ variable "ecr_repository_policy_statements" {
 variable "ecr_create_lifecycle_policy" {
   description = "Determines whether a lifecycle policy will be created"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "ecr_repository_lifecycle_policy" {

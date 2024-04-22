@@ -50,7 +50,7 @@ variable "ecr_repository_type" {
 variable "ecr_create_repository" {
   description = "Determines whether a repository will be created"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "ecr_repository_name" {

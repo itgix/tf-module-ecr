@@ -227,4 +227,5 @@ variable "ecr_create_registry_replication_configuration" {
 variable "ecr_registry_replication_rules" {
   description = "The replication rules for a replication configuration. A maximum of 10 are allowed"
   type        = any
-  default 
+  default     = []
+}

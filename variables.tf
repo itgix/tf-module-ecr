@@ -87,7 +87,14 @@ variable "ecr_repository_read_write_access_arns" {
   default     = []
 }
 
-
+################################################################################
+# Lifecycle Policy
+################################################################################
+variable "ecr_create_lifecycle_policy" {
+  description = "Determines whether a lifecycle policy will be created"
+  type        = bool
+  default     = true
+}
 ################################################################################
 # Registry Scanning Configuration
 ################################################################################

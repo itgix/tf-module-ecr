@@ -16,6 +16,8 @@ module "ecr" {
   registry_scan_type = var.ecr_registry_scan_type
   registry_scan_rules = var.ecr_registry_scan_rules
 
+  create_lifecycle_policy = var.ecr_create_lifecycle_policy
+
 
   tags = var.resources_tags
 

@@ -70,15 +70,9 @@ variable "ecr_repository_image_scan_on_push" {
   default     = true
 }
 
-
 ################################################################################
 # Repository Policy
 ################################################################################
-variable "ecr_create_repository_policy" {
-  description = "Determines whether a repository policy will be created"
-  type        = bool
-  default     = true
-}
 
 variable "ecr_repository_read_access_arns" {
   description = "The ARNs of the IAM users/roles that have read access to the repository"

@@ -5,7 +5,7 @@ module "ecr" {
   for_each = local.ecr_input
 
   # Use ecr_enabled directly
-  create_repository = var.ecr_enabled
+  create_repository = var.ecr_create_repository
 
   # Compose repo name; optional project prefix
   repository_name = var.ecr_prefix_with_projectname

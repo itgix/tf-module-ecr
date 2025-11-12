@@ -25,7 +25,7 @@ variable "project_name" {
 # Repository
 ################################################################################
 
-variable "ecr_enabled" {
+variable "ecr_create_repository" {
   type        = bool
   default     = false
   description = "Master switch for creating ECR repositories"

@@ -25,4 +25,6 @@ locals {
 
   name_string = "${local.aws_regions_short[var.aws_region]}-${var.environment}-${var.project_name}"
 
+  ecr_input = var.ecr_create_repository && length(var.ecr_names_map) > 0 ? var.ecr_names_map : {}
+
 }

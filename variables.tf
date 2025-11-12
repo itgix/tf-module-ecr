@@ -22,96 +22,79 @@ variable "project_name" {
 }
 
 ################################################################################
-# Module 
-################################################################################
-variable "resources_tags" {
-  description = "A map of tags to add to all resources"
-  type        = map(string)
-  default     = {}
-}
-
-variable "ecr_repository_type" {
-  description = "The type of repository to create. Either `public` or `private`"
-  type        = string
-  default     = "private"
-}
-
-################################################################################
 # Repository
 ################################################################################
 
 variable "ecr_create_repository" {
-  description = "Determines whether a repository will be created"
+  type        = bool
+  default     = false
+  description = "Master switch for creating ECR repositories"
+}
+
+variable "ecr_names_map" {
+  type        = map(string)
+  default     = {}
+  description = "Map of repositories to create. Example: { r1 = \"myfirstrepo\", r2 = \"mysecondrepo\" }"
+}
+
+variable "ecr_prefix_with_projectname" {
   type        = bool
   default     = true
+  description = "If true, prefix repository names with the project name (project-<repo>)"
 }
 
-variable "ecr_repository_name" {
-  description = "The name of the repository"
-  type        = string
-  default     = ""
-}
-
-variable "ecr_repository_image_tag_mutability" {
-  description = "The tag mutability setting for the repository. Must be one of: `MUTABLE` or `IMMUTABLE`. Defaults to `IMMUTABLE`"
-  type        = string
-  default     = "IMMUTABLE"
-}
-
-variable "ecr_repository_encryption_type" {
-  description = "The encryption type for the repository. Must be one of: `KMS` or `AES256`. Defaults to `AES256`"
-  type        = string
-  default     = "AES256"
-}
-
-variable "ecr_repository_image_scan_on_push" {
-  description = "Indicates whether images are scanned after being pushed to the repository (`true`) or not scanned (`false`)"
-  type        = bool
-  default     = true
-}
-
-################################################################################
-# Repository Policy
-################################################################################
-
-variable "ecr_repository_read_access_arns" {
-  description = "The ARNs of the IAM users/roles that have read access to the repository"
-  type        = list(string)
-  default     = []
+/* passthroughs to the ecr module */
+variable "ecr_repository_type" {
+  type    = string
+  default = null
 }
 
 variable "ecr_repository_read_write_access_arns" {
-  description = "The ARNs of the IAM users/roles that have read/write access to the repository"
-  type        = list(string)
-  default     = []
+  type    = list(string)
+  default = []
 }
 
-################################################################################
-# Lifecycle Policy
-################################################################################
-variable "ecr_create_lifecycle_policy" {
-  description = "Determines whether a lifecycle policy will be created"
-  type        = bool
-  default     = true
+variable "ecr_repository_read_access_arns" {
+  type    = list(string)
+  default = []
 }
-################################################################################
-# Registry Scanning Configuration
-################################################################################
+
+variable "ecr_repository_encryption_type" {
+  type    = string
+  default = null
+}
+
+variable "ecr_repository_image_scan_on_push" {
+  type    = bool
+  default = true
+}
+
+variable "ecr_repository_image_tag_mutability" {
+  type    = string
+  default = "IMMUTABLE"
+}
 
 variable "ecr_manage_registry_scanning_configuration" {
-  description = "Determines whether the registry scanning configuration will be managed"
-  type        = bool
-  default     = false
+  type    = bool
+  default = false
 }
 
 variable "ecr_registry_scan_type" {
-  description = "the scanning type to set for the registry. Can be either `ENHANCED` or `BASIC`"
-  type        = string
-  default     = "BASIC"
+  type    = string
+  default = null
 }
 
 variable "ecr_registry_scan_rules" {
-  description = "One or multiple blocks specifying scanning rules to determine which repository filters are used and at what frequency scanning will occur"
-  type        = any
-  default     = []
+  type    = any
+  default = null
+}
+
+variable "ecr_create_lifecycle_policy" {
+  type    = bool
+  default = false
+}
+
+variable "resources_tags" {
+  type    = map(string)
+  default = {}
 }

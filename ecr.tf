@@ -8,9 +8,8 @@ module "ecr" {
   create_repository = var.ecr_create_repository
 
   # Compose repo name; optional project prefix
-  repository_name = var.ecr_prefix_with_projectname
-    ? "${var.project_name}-${each.value}"
-    : each.value
+  repository_name = var.ecr_prefix_with_projectname ? format("%s-%s", var.project_name, each.value) : each.value
+
 
   repository_type                         = var.ecr_repository_type
   repository_read_write_access_arns       = var.ecr_repository_read_write_access_arns

@@ -1,23 +1,12 @@
 ################################################################################
 # Private Repository
 ################################################################################
-
-output "repository_name" {
-  description = "Name of the repository"
-  value       = module.ecr.repository_name
+output "repository_names" {
+  description = "List of ECR repository names"
+  value       = [for k, m in module.ecr : m.repository_name]
 }
 
-output "repository_arn" {
-  description = "Full ARN of the repository"
-  value       = module.ecr.repository_arn
-}
-
-output "repository_registry_id" {
-  description = "The registry ID where the repository was created"
-  value       = module.ecr.repository_registry_id
-}
-
-output "repository_url" {
-  description = "The URL of the repository (in the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`)"
-  value       = module.ecr.repository_url
+output "repository_urls" {
+  description = "List of ECR repository URLs (registry/repository)"
+  value       = [for k, m in module.ecr : m.repository_url]
 }

@@ -90,8 +90,29 @@ variable "ecr_registry_scan_rules" {
 }
 
 variable "ecr_create_lifecycle_policy" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
+  description = "Master switch for creating an ECR lifecycle policy on the repositories"
+}
+
+variable "ecr_repository_lifecycle_policy" {
+  type        = string
+  default     = null
+  description = <<-EOT
+    Default lifecycle policy document (JSON string) applied to all repositories.
+    Build it with jsonencode(). Ignored when ecr_create_lifecycle_policy is false.
+    Can be overridden per repository via ecr_repository_lifecycle_policies.
+  EOT
+}
+
+variable "ecr_repository_lifecycle_policies" {
+  type        = map(string)
+  default     = {}
+  description = <<-EOT
+    Per-repository lifecycle policy documents (JSON strings) keyed by the same
+    logical keys used in ecr_names_map. Overrides ecr_repository_lifecycle_policy
+    for the matching repository. Ignored when ecr_create_lifecycle_policy is false.
+  EOT
 }
 
 variable "resources_tags" {

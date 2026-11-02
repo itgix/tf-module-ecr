@@ -21,6 +21,7 @@ module "ecr" {
   registry_scan_type                      = var.ecr_registry_scan_type
   registry_scan_rules                     = var.ecr_registry_scan_rules
   create_lifecycle_policy                 = var.ecr_create_lifecycle_policy
+  repository_lifecycle_policy             = try(var.ecr_repository_lifecycle_policies[each.key], var.ecr_repository_lifecycle_policy)
 
   tags = merge(
     var.resources_tags,
